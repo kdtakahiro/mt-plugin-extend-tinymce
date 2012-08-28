@@ -35,5 +35,5 @@ This library is free software released under the GPL.
 The following copyright notice applies to all the files provided in this
 distribution, including binary files, unless explicitly noted otherwise.
 
-Copyright 2012 Six Apart, Ltd.
-Copyright 2012 Hideki Abe <http://www.skyward-design.net>
+* Copyright 2012 Six Apart, Ltd.
+* Copyright 2012 Hideki Abe <http://www.skyward-design.net>
