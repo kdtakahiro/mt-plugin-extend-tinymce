@@ -2,7 +2,7 @@
 
 Load the table plugin, template plugin and add buttons to TinyMCE that is default rich text editor of Movable Type 5.2 or later.
 
-![Screenshot](https://github.com/movabletype/mt-plugin-extend-tinymce/raw/master/artwork/screenshot.png)
+![Screenshot](https://raw.github.com/hideki-a/mt-plugin-extend-tinymce/master/artwork/screenshot.png)
 
 
 ## Requirements
