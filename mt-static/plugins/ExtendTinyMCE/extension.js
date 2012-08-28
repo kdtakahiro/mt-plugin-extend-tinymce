@@ -16,6 +16,7 @@ var config   = MT.Editor.TinyMCE.config,
     template_external_list_url = 'tmpl/template_list.js',
     convert_urls = true,
     remove_script_host = true,
+    relative_urls = false,
     element_format = 'html';
 
 $.extend(config, {
@@ -31,6 +32,7 @@ $.extend(config, {
     template_external_list_url: base_url + template_external_list_url,
     convert_urls: convert_urls,
     remove_script_host: remove_script_host,
+    relative_urls: relative_urls,
     element_format: element_format
 });
 
