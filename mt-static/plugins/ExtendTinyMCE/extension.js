@@ -1,8 +1,8 @@
 (function($) {
 
-var config   = MT.Editor.TinyMCE.config;
-var base_url = StaticURI + 'plugins/TableFeatureForTinyMCE/';
-var buttons  =
+var config   = MT.Editor.TinyMCE.config,
+    base_url = StaticURI + 'plugins/ExtendTinyMCE/',
+    buttons  =
     (config.plugin_mt_wysiwyg_buttons3 || '') + ',tablecontrols,|,visualaid';
 
 $.extend(config, {
