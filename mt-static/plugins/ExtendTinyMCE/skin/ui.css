@@ -9,7 +9,8 @@
 .mtSkin span.mce_delete_col, 
 .mtSkin span.mce_split_cells, 
 .mtSkin span.mce_merge_cells, 
-.mtSkin span.mce_visualaid {
+.mtSkin span.mce_visualaid,
+.mtSkin span.mce_template {
     background: transparent url(./img/icons.png) no-repeat top left;
 }
 
@@ -25,3 +26,4 @@
 .mtSkin span.mce_split_cells { background-position: -450px 0; }
 .mtSkin span.mce_merge_cells { background-position: -500px 0; }
 .mtSkin span.mce_visualaid { background-position: -550px 0; }
+.mtSkin span.mce_template { background-position: -600px 0; }
