@@ -12,10 +12,11 @@ var config   = MT.Editor.TinyMCE.config,
         {title : 'Example 1', inline : 'span', classes : 'example1'},
         {title : 'Example 2', inline : 'span', classes : 'example2'}
     ],
-    font_sizes = "10px,14px",
-    template_external_list_url = "tmpl/template_list.js",
+    font_sizes = '12px,16px',
+    template_external_list_url = 'tmpl/template_list.js',
     convert_urls = true,
-    remove_script_host = true;
+    remove_script_host = true,
+    element_format = 'html';
 
 $.extend(config, {
     plugins: config.plugins + add_plugins,
@@ -30,6 +31,7 @@ $.extend(config, {
     template_external_list_url: base_url + template_external_list_url,
     convert_urls: convert_urls,
     remove_script_host: remove_script_host,
+    element_format: element_format
 });
 
 $.extend(config.plugin_mt_inlinepopups_window_sizes, {
