@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+body{
+line-height:1.57143;
+font-size:0.875em;
+}
+
+.lyt-image{
+zoom:1;
+}
+
+.lyt-image:after{
+display:block;
+visibility:hidden;
+clear:both;
+content:" ";
+height:0.01px;
+}
