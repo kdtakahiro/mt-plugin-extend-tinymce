@@ -22,7 +22,6 @@ var config   = MT.Editor.TinyMCE.config,
 
 $.extend(config, {
     plugins: config.plugins + add_plugins,
-    content_css: config.content_css + ',' + base_url + 'skin/content.css',
     plugin_mt_wysiwyg_buttons1: buttons1,
     plugin_mt_wysiwyg_buttons2: buttons2,
     plugin_mt_wysiwyg_buttons3: buttons3,
