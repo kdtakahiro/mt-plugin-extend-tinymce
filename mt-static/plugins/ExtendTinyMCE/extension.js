@@ -10,7 +10,8 @@ var config   = MT.Editor.TinyMCE.config,
     indent_after = 'p,h1,h2,h3,h4,h5,h6,blockquote,div,title,style,pre,script,td,ul,ol,dl,dt,dd,area,table,thead,tfoot,tbody,tr,iframe,section,article,hgroup,aside,figure,option,optgroup,datalist',
     styles = [
         {title : 'Example 1', inline : 'span', classes : 'example1'},
-        {title : 'Example 2', inline : 'span', classes : 'example2'}
+        {title : 'Example 2', inline : 'span', classes : 'example2'},
+        { title: 'セクション', block: 'section', wrapper: true, merge_siblings: false }
     ],
     font_sizes = '12px,16px',
     template_external_list_url = 'tmpl/template_list.js',
@@ -19,6 +20,7 @@ var config   = MT.Editor.TinyMCE.config,
     remove_script_host = true,
     relative_urls = false,
     element_format = 'html';
+    schema = "html5",
 
 $.extend(config, {
     plugins: config.plugins + add_plugins,
@@ -34,7 +36,9 @@ $.extend(config, {
     convert_urls: convert_urls,
     remove_script_host: remove_script_host,
     relative_urls: relative_urls,
-    element_format: element_format
+    element_format: element_format,
+    end_container_on_empty_block: true,    // End container block element when pressing enter inside an empty block
+    schema: schema
 });
 
 $.extend(config.plugin_mt_inlinepopups_window_sizes, {
