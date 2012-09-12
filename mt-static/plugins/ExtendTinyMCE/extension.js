@@ -19,8 +19,8 @@ var config   = MT.Editor.TinyMCE.config,
     convert_urls = true,
     remove_script_host = true,
     relative_urls = false,
-    element_format = 'html';
-    schema = "html5",
+    element_format = 'html',
+    schema = "html5";
 
 $.extend(config, {
     plugins: config.plugins + add_plugins,
