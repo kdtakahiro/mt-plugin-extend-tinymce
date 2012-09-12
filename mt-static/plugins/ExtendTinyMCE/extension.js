@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
 
 var config   = MT.Editor.TinyMCE.config,
     base_url = StaticURI + 'plugins/ExtendTinyMCE/',
@@ -9,8 +9,8 @@ var config   = MT.Editor.TinyMCE.config,
     indent_before = 'p,h1,h2,h3,h4,h5,h6,blockquote,div,title,style,pre,script,td,ul,ol,dl,dt,dd,area,table,thead,tfoot,tbody,tr,iframe,section,article,hgroup,aside,figure,option,optgroup,datalist',
     indent_after = 'p,h1,h2,h3,h4,h5,h6,blockquote,div,title,style,pre,script,td,ul,ol,dl,dt,dd,area,table,thead,tfoot,tbody,tr,iframe,section,article,hgroup,aside,figure,option,optgroup,datalist',
     styles = [
-        {title : 'Example 1', inline : 'span', classes : 'example1'},
-        {title : 'Example 2', inline : 'span', classes : 'example2'},
+        { title: 'Example 1', inline: 'span', classes: 'example1' },
+        { title: 'Example 2', inline: 'span', classes: 'example2' },
         { title: 'セクション', block: 'section', wrapper: true, merge_siblings: false }
     ],
     font_sizes = '12px,16px',
@@ -60,4 +60,4 @@ $.extend(config.plugin_mt_inlinepopups_window_sizes, {
     }
 });
 
-})(jQuery);
+}(jQuery));
