@@ -16,3 +16,10 @@ clear:both;
 content:" ";
 height:0.01px;
 }
+
+table,
+th,
+td{
+border-collapse:collapse;
+border:1px dotted #999;
+}
