@@ -10,7 +10,6 @@
 .mtSkin span.mce_split_cells, 
 .mtSkin span.mce_merge_cells, 
 .mtSkin span.mce_visualaid,
-.mtSkin span.mce_template,
 .mtSkin span.mce_attribs {
     background: transparent url(./img/icons.png) no-repeat top left;
 }
@@ -29,3 +28,7 @@
 .mtSkin span.mce_visualaid { background-position: -550px 0; }
 .mtSkin span.mce_template { background-position: -600px 0; }
 .mtSkin span.mce_attribs { background-position: -650px 0; }
+
+.mtSkin span.mce_template {
+	background: url(../../FormattedTextForTinyMCE/skin/img/icon-template.png) no-repeat left top;
+}
