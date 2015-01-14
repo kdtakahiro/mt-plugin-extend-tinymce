@@ -7,7 +7,7 @@ Load the table plugin, template plugin and add buttons to TinyMCE that is defaul
 
 ## Requirements
 
-* Movable Type 5.2
+* Movable Type 5.2 or later
 
 
 ## Installation
@@ -36,4 +36,4 @@ The following copyright notice applies to all the files provided in this
 distribution, including binary files, unless explicitly noted otherwise.
 
 * Copyright 2012 Six Apart, Ltd.
-* Copyright 2012 Hideki Abe <http://www.skyward-design.net>
+* Copyright 2015 Hideki Abe <http://www.anothersky.pw>
