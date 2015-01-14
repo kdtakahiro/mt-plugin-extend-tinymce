@@ -13,7 +13,7 @@ var config   = MT.Editor.TinyMCE.config,
         { title: '画像ブロック', block: 'div', wrapper: true, merge_siblings: false, classes: 'clearfix' }
     ],
     font_sizes = '12px,16px',
-    template_external_list_url = 'tmpl/template_list.js',
+    template_external_list_url = 'tmpl/template_list.js?' + Math.ceil(Math.random() * 1000000000),
     convert_urls = true,
     remove_script_host = true,
     relative_urls = false,
