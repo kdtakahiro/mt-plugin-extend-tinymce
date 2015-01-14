@@ -1,25 +1,53 @@
 (function ($) {
 
-var config   = MT.Editor.TinyMCE.config,
-    base_url = StaticURI + 'plugins/ExtendTinyMCE/',
-    add_plugins = ',table,template',
-    buttons1 = (config.plugin_mt_wysiwyg_buttons1 || '') + ',|,template,|,attribs',
-    buttons2 = 'undo,redo,|,forecolor,backcolor,removeformat,|,justifyleft,justifycenter,justifyright,indent,outdent,|,styleselect,formatselect,fontsizeselect,|,mt_fullscreen',
-    buttons3 = (config.plugin_mt_wysiwyg_buttons3 || '') + ',tablecontrols,|,visualaid',
-    indent_before = 'p,h1,h2,h3,h4,h5,h6,blockquote,div,title,style,pre,script,td,ul,ol,dl,dt,dd,area,table,thead,tfoot,tbody,tr,iframe,section,article,aside,figure,option,optgroup,datalist',
-    indent_after = 'p,h1,h2,h3,h4,h5,h6,blockquote,div,title,style,pre,script,td,ul,ol,dl,dt,dd,area,table,thead,tfoot,tbody,tr,iframe,section,article,aside,figure,option,optgroup,datalist',
-    styles = [
+var config   = MT.Editor.TinyMCE.config;
+var base_url = StaticURI + 'plugins/ExtendTinyMCE/';
+
+// TinyMCEで利用するプラグイン
+// http://www.tinymce.com/wiki.php/Configuration3x:plugins
+var add_plugins = ',table,template';
+
+// ボタン - 1段目
+// http://www.tinymce.com/wiki.php/Configuration3x:theme_advanced_buttons_1_n
+var buttons1 = (config.plugin_mt_wysiwyg_buttons1 || '') + ',|,template,|,attribs';
+
+// ボタン - 2段目
+var buttons2 = 'undo,redo,|,forecolor,backcolor,removeformat,|,justifyleft,justifycenter,justifyright,indent,outdent,|,styleselect,formatselect,fontsizeselect,|,mt_fullscreen';
+
+// ボタン - 3段目
+var buttons3 = (config.plugin_mt_wysiwyg_buttons3 || '') + ',tablecontrols,|,visualaid';
+
+var indent_before = 'p,h1,h2,h3,h4,h5,h6,blockquote,div,title,style,pre,script,td,ul,ol,dl,dt,dd,area,table,thead,tfoot,tbody,tr,iframe,section,article,aside,figure,option,optgroup,datalist';
+var indent_after = 'p,h1,h2,h3,h4,h5,h6,blockquote,div,title,style,pre,script,td,ul,ol,dl,dt,dd,area,table,thead,tfoot,tbody,tr,iframe,section,article,aside,figure,option,optgroup,datalist';
+
+// スタイルプルダウンの定義
+// 任意のstyle属性値やclass属性値を付与した要素が挿入可能になる
+// http://www.tinymce.com/wiki.php/Configuration3x:style_formats
+var styles = [
         { title: 'セクション', block: 'section', wrapper: true, merge_siblings: false },
         { title: '画像ブロック', block: 'div', wrapper: true, merge_siblings: false, classes: 'clearfix' }
-    ],
-    font_sizes = '12px,16px',
-    theme_advanced_blockformats = 'p,h2,h3,h4,h5',
-    template_external_list_url = 'tmpl/template_list.js?' + Math.ceil(Math.random() * 1000000000),
-    convert_urls = true,
-    remove_script_host = true,
-    relative_urls = false,
-    element_format = 'html',
-    schema = "html5";
+    ];
+
+// フォントサイズプルダウンの定義
+// カンマ区切りで指定
+// http://www.tinymce.com/wiki.php/Configuration3x:theme_advanced_font_sizes
+var font_sizes = '12px,16px';
+
+// 書式プルダウンの定義
+// カンマ区切りで要素を指定
+// http://www.tinymce.com/wiki.php/Configuration3x:theme_advanced_blockformats
+var theme_advanced_blockformats = 'p,h2,h3,h4,h5';
+
+// テンプレートリストへのパス
+// 記事の定型文を設定した場合、記事編集画面では定型文がリストアップされます。
+// （テンプレートの設定内容は表示されません。）
+var template_external_list_url = 'tmpl/template_list.js?' + Math.ceil(Math.random() * 1000000000);
+
+var convert_urls = true;
+var remove_script_host = true;
+var relative_urls = false;
+var element_format = 'html';
+var schema = "html5";
 
 $.extend(config, {
     plugins: config.plugins + add_plugins,
