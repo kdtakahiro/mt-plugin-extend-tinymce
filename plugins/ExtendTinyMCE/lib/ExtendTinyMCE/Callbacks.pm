@@ -16,7 +16,7 @@ var extendTinyMCESettings = {
 </script>
 __HTML__
 
-    $$tmpl_str_ref =~ s!<\!\-\- ExtendTinyMCESetting \-\->!$option_data!;
+    $$tmpl_str_ref =~ s!<script id="extendtinymce_settings"></script>!$option_data!;
 }
 
 1;
