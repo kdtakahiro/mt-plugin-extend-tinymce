@@ -1,4 +1,11 @@
 (function ($) {
+var blogId;
+var magicToken;
+var authDfd = $.Deferred();
+var api;
+var $overlay;
+var loadingImgSrc = StaticURI + "images/loadingAnimation.gif";
+var $loadingImg = $("<img src='" + loadingImgSrc + "' alt='読み込み中' style='position: absolute; top: 25%; left: 50%; margin-left: -104px;'>");
 
 var config   = MT.Editor.TinyMCE.config;
 var base_url = StaticURI + 'plugins/ExtendTinyMCE/';
@@ -49,6 +56,37 @@ var relative_urls = false;
 var element_format = 'html';
 var schema = "html5";
 
+// アセットアップロードダイアログのオープン
+function openDialog(mode, param) {
+    createSessionHistoryFallback(location.href);
+    $.fn.mtDialog.open(
+        ScriptURI + '?' + '__mode=' + mode + '&amp;' + param
+    );
+}
+
+function getEditorBody(elem) {
+    var body;
+    var getParent = function (elem) {
+        var parent;
+
+        parent = elem.parentNode;
+
+        if (parent.tagName.toLowerCase() !== "body") {
+            parent = getParent(parent);
+        }
+
+        return parent;
+    };
+
+    if (elem.tagName.toLowerCase() === "html") {
+        body = elem.getElementsByTagName("body")[0];
+    } else {
+        body = getParent(elem);
+    }
+
+    return body;
+}
+
 $.extend(config, {
     plugins: config.plugins + add_plugins,
     plugin_mt_wysiwyg_buttons1: buttons1,
@@ -65,7 +103,62 @@ $.extend(config, {
     relative_urls: relative_urls,
     element_format: element_format,
     end_container_on_empty_block: true,    // End container block element when pressing enter inside an empty block
-    schema: schema
+    schema: schema,
+    setup: function (editor) {
+        editor.onInit.add(function() {
+            var event = document.createEvent("CustomEvent");
+
+            editor.dom.bind(editor.getWin(), ["drop"], function (e) {
+                var id;
+                var data;
+
+                if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    if (!api) {
+                        alert("画像・ファイルは、「画像の挿入」「アイテムの挿入」ボタンを使って配置して下さい。");
+                        return;
+                    } else if (e.dataTransfer.files[0].type.indexOf("image") === -1) {
+                        alert("ファイルは「アイテムの挿入」ボタンを使って配置して下さい。");
+                        return;
+                    }
+
+                    event.initCustomEvent("apiloading", true, true, null);
+                    window.parent.dispatchEvent(event);
+
+                    id = getEditorBody(e.target).id;
+                    data = {
+                        file: e.dataTransfer.files[0],
+                        path: "images/",
+                        autoRenameIfExists: true,
+                        normalizeOrientation: true
+                    };
+
+                    api.uploadAsset({ site_id: blogId }, data, function (response) {
+                        var url;
+
+                        event.initCustomEvent("apiloaded", true, true, null);
+                        window.parent.dispatchEvent(event);
+
+                        if (response.error) {
+                            console.log(response.error);
+                            alert("画像が正常にアップロードできませんでした。");
+                            return
+                        }
+
+                        openDialog(
+                            "complete_insert",
+                            "magic_token=" + magicToken + "&id=" + response.id +
+                            "&_type=asset&edit_field=" + id + "&blog_id=" + blogId +
+                            "&dialog_view=1&filter=class&filter_val=image&entry_insert=1&" +
+                            "direct_asset_insert=1&no_insert=0"
+                        );
+                    });
+                }
+            });
+        });
+    },
 });
 
 $.extend(config.plugin_mt_inlinepopups_window_sizes, {
@@ -87,4 +180,42 @@ $.extend(config.plugin_mt_inlinepopups_window_sizes, {
     }
 });
 
+// Data APIインスタンス作成・認証
+api = new MT.DataAPI({
+    clientId: "extendtinymce",
+    baseUrl: "/mt/mt-data-api.cgi",
+    format: "json"
+});
+
+api.authenticate({
+    username: extendTinyMCESettings.apiUsername,
+    password: extendTinyMCESettings.apiPassword,
+    remember: true
+}, function (response) {
+    if (response.error) {
+        authDfd.reject();
+    }
+
+    api.storeTokenData(response);
+    authDfd.resolve();
+});
+
+authDfd.fail(function () {
+    console.log("[Movable Type Data API] 認証に失敗しました。");
+    api = null;
+});
+
+// 編集画面データ取得
+$(function () {
+    blogId = $("#blog-id").val() || 0;
+    magicToken = $("input[name='magic_token']").val();
+
+    $(window).on("apiloading", function () {
+        $(".mt-dialog-overlay").append($loadingImg).show();
+    });
+
+    $(window).on("apiloaded", function () {
+        $(".mt-dialog-overlay").hide().empty();
+    });
+});
 }(jQuery));

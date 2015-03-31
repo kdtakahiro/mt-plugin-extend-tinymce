@@ -1,13 +1,28 @@
 id: ExtendTinyMCE
 name: ExtendTinyMCE
-version: 1.0.7
-author_link: http://www.anothersky.pw/
+key: extendtinymce
+version: 1.1.0-alpha1
+author_link: https://www.anothersky.pw/
 author_name: Hideki Abe
 description: <MT_TRANS phrase="Extend TinyMCE.">
 l10n_lexicon:
     ja:
         Extend TinyMCE.: "TinyMCEの機能拡張セット"
+system_config_template: setting_system.tmpl
+
+settings:
+    data_api_username:
+        default:
+        scope: system
+    data_api_password:
+        default:
+        scope: system
 
 editors:
     tinymce:
         extension: extension.tmpl
+
+callbacks:
+    MT::App::CMS::template_output.edit_entry:
+        code: $extendtinymce::ExtendTinyMCE::Callbacks::embed_setting
+        priority: 5
