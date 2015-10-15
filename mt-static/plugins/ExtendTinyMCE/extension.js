@@ -9,7 +9,7 @@ var add_plugins = ',table,template';
 
 // ボタン - 1段目
 // http://www.tinymce.com/wiki.php/Configuration3x:theme_advanced_buttons_1_n
-var buttons1 = (config.plugin_mt_wysiwyg_buttons1 || '') + ',|,template,|,attribs';
+var buttons1 = (config.plugin_mt_wysiwyg_buttons1 || '') + ',|,template,|,attribs,|,charmap';
 
 // ボタン - 2段目
 var buttons2 = 'undo,redo,|,forecolor,backcolor,removeformat,|,justifyleft,justifycenter,justifyright,indent,outdent,|,styleselect,formatselect,fontsizeselect,|,mt_fullscreen';
