@@ -1,7 +1,7 @@
 (function ($) {
 
 var config   = MT.Editor.TinyMCE.config;
-var base_url = StaticURI + 'plugins/ExtendTinyMCE/';
+var base_url = StaticURI + 'plugins/ExtendTinyMCECommonTemplate/';
 
 // TinyMCEで利用するプラグイン
 // http://www.tinymce.com/wiki.php/Configuration3x:plugins
