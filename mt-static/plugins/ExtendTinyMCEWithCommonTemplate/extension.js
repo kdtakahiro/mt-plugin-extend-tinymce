@@ -1,7 +1,7 @@
 (function ($) {
 
 var config   = MT.Editor.TinyMCE.config;
-var base_url = StaticURI + 'plugins/ExtendTinyMCECommonTemplate/';
+var base_url = StaticURI + 'plugins/ExtendTinyMCEWithCommonTemplate/';
 
 // TinyMCEで利用するプラグイン
 // http://www.tinymce.com/wiki.php/Configuration3x:plugins
@@ -38,10 +38,18 @@ var font_sizes = '12px,16px';
 // http://www.tinymce.com/wiki.php/Configuration3x:theme_advanced_blockformats
 var theme_advanced_blockformats = 'p,h2,h3,h4,h5';
 
-// テンプレートリストへのパス
-// 記事の定型文を設定した場合、記事編集画面では定型文がリストアップされます。
-// （テンプレートの設定内容は表示されません。）
-var template_external_list_url = 'tmpl/template_list.js?' + Math.ceil(Math.random() * 1000000000);
+// 定型文（テンプレート）
+// template_external_list_urlを設定すると、それが優先されるためMTで登録した定型文が表示されない。
+// 設定済みの値に追加してMTで登録した設定も表示する。
+if (config.template_templates) {
+    for (var i = 0; i < tinyMCETemplateList.length; i++) {
+        config.template_templates.push({
+            title: tinyMCETemplateList[i][0],
+            src: tinyMCETemplateList[i][1],
+            description: (3 <= tinyMCETemplateList[i].length) ? tinyMCETemplateList[i][2] : ""
+        });
+    }
+}
 
 var convert_urls = true;
 var remove_script_host = true;
@@ -59,7 +67,6 @@ $.extend(config, {
     style_formats: styles,
     theme_advanced_font_sizes: font_sizes,
     theme_advanced_blockformats: theme_advanced_blockformats,
-    template_external_list_url: base_url + template_external_list_url,
     convert_urls: convert_urls,
     remove_script_host: remove_script_host,
     relative_urls: relative_urls,

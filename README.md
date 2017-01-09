@@ -16,40 +16,47 @@ I tested only on 6.3.2.
 
 1. Make new MT plugin directory.
 
-like this:
+  like this:
 
-    $MT_HOME/
-        plugins/
-            TinyMCE
-            MultiBlog
-            ...other default plugins
-        <your-any-plugins-dir-name>/ <- create this.
+      $MT_HOME/
+          plugins/
+              TinyMCE
+              MultiBlog
+              ...other default plugins
+          <your-any-plugins-dir-name>/ <- create this.
 
 2. Add your any `PluginPath` to mt-config.cgi.
-```
-PluginPath plugins <- TinyMCE is in this.
-PluginPath <your-any-plugins-dir-name>
-```
-It must be set the new plugins directory after the directory TinyMCE-plugin is in.
+  > mt-config.cgi
+
+  ```
+  PluginPath plugins <- TinyMCE is in this.
+  PluginPath <your-any-plugins-dir-name>
+  ```
+  *It must be set the new plugins directory after the directory TinyMCE-plugin is in.*
 
 3. Unpack the `ExtendTinyMCEWithCommonTemplate` archive.
 4. Upload the contents to the new MT plugins directory.
 
-Should look like this when installed:
+  Should look like this when installed:
 
-    $MT_HOME/
-        <your-any-plugins-dir-name>/
-            ExtendTinyMCEWithCommonTemplate/
-        mt-static/
-            plugins/
-                ExtendTinyMCEWithCommonTemplate/
-            
+      $MT_HOME/
+          <your-any-plugins-dir-name>/
+              ExtendTinyMCEWithCommonTemplate/
+          mt-static/
+              plugins/
+                  ExtendTinyMCEWithCommonTemplate/
+
+5. Add template property to template_list.js. Create some template.html.
+
+  For details, see template_list.js.
+
+  > template_list.js is in $MT_HOME/mt-static/plugins/ExtendTinyMCEWithCommonTemplate/tmpl.
 
 ## License
 
 This library is free software released under the MIT.
- 
- 
+
+
 ## Copyright
 
 The following copyright notice applies to all the files provided in this
