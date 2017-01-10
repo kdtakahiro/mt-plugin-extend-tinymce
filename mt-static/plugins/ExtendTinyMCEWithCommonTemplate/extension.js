@@ -41,14 +41,13 @@ var theme_advanced_blockformats = 'p,h2,h3,h4,h5';
 // 定型文（テンプレート）
 // template_external_list_urlを設定すると、それが優先されるためMTで登録した定型文が表示されない。
 // 設定済みの値に追加してMTで登録した設定も表示する。
-if (config.template_templates) {
-    for (var i = 0; i < tinyMCETemplateList.length; i++) {
-        config.template_templates.push({
-            title: tinyMCETemplateList[i][0],
-            src: tinyMCETemplateList[i][1],
-            description: (3 <= tinyMCETemplateList[i].length) ? tinyMCETemplateList[i][2] : ""
-        });
-    }
+config.template_templates = config.template_templates || [];
+for (var i = 0; i < tinyMCETemplateList.length; i++) {
+    config.template_templates.push({
+        title: tinyMCETemplateList[i][0],
+        src: tinyMCETemplateList[i][1],
+        description: (3 <= tinyMCETemplateList[i].length) ? tinyMCETemplateList[i][2] : ""
+    });
 }
 
 var convert_urls = true;
